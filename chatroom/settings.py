@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'chatroom.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'mysql.connector.django',
         'NAME': 'chat',
         'USER': 'chatadmin',
         'PASSWORD': 'microsoft',
