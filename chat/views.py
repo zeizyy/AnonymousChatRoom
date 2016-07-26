@@ -8,7 +8,7 @@ import math
 ROOM_SEPARATION = 10
 
 # Create your views here.
-def index(request):
+def redirect(request):
     return render_to_response('index.html')
 
 def index(request):
