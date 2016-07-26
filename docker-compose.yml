@@ -7,4 +7,4 @@ chat:
       - "80:8000"
    volumes:
       - ./:/app
-   command: bash -c "chown -R :www-data . && chmod -R 775 . && mod_wsgi-express start-server --reload-on-changes --log-to-terminal --url-alias /static ./mysite/static --url-alias /media ./mysite/media ./mysite/wsgi.py"
+   command: bash -c "chown -R :www-data . && chmod -R 775 . && mod_wsgi-express start-server --reload-on-changes --log-to-terminal ./chatroom/wsgi.py"
