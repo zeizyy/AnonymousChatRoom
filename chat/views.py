@@ -32,7 +32,7 @@ def start_chat_room(request):
     chatroom.save()
     chatroom.users.add(user)
 
-    return render_to_response('chatroom.html',{ 'user':user, 'chatroom' : room})
+    return render_to_response('chatroom.html',{ 'user':user, 'chatroom' : chatroom})
 
 def _get_distance(x1, y1, chatroom):
     x2 = float(chatroom.x_cord)
@@ -40,7 +40,16 @@ def _get_distance(x1, y1, chatroom):
     return math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2))
 
 def get_message(request):
-    pass
+    return _success_response(request, [('This is an exmaple message', 'n'), ('Someone has left', 'l')])
 
-def PostMessages(request):
-    pass
+def post_message(request):
+    
+
+def _error_response(request, error_msg):
+    return JsonResponse({'status': False, 'error': error_msg})
+
+def _success_response(request, resp=None):
+    if resp:
+        return JsonResponse({'status': True, 'resp': resp})
+    else:
+        return JsonResponse({'status': True})
