@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html>
+<head>
 <script>
 if (navigator.geolocation){
     navigator.geolocation.getCurrentPosition(showPosition);
@@ -9,3 +12,5 @@ function showPosition(position) {
     window.location.href = '/chatroom/create?x=' + position.coords.latitude + '&y=' + position.coords.longitude;
 }
 </script>
+</head>
+</html>
