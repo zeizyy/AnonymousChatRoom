@@ -4,8 +4,7 @@
         <script src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
         <script>
             $(function(){
-               //getData(); 
-               setInterval(getData());
+               getData(); 
             });
             var getData = function() {
                 $.ajax({
@@ -16,6 +15,11 @@
                     success: function(responseObject) {
                         // Display the JSON query status
                         document.getElementById("status").innerHTML = "Status: " + responseObject.status;
+                        /* Put the elements back to the DOM */
+                        var messages = document.getElementById("response");
+                        while(messages.firstChild) {
+                            messages.removeChild(messages.firstChild);
+                        }
                         // Display the JSON query messages
                         for(i = 0; i < responseObject.resp.length; i++) {
                             // Create an entry for the message
@@ -30,16 +34,15 @@
                             } else {
                                 messageContentP.style.color = "grey";
                             }
-                            /* Put the elements back to the DOM */
-                            var messages = document.getElementById("response");
                             messages.appendChild(messageContentP);
                         }
                         /* Get the current timestamp */
-                        var timestamp = Date().getTime();
-                        document.getElementById("timestamp").innerHTML = "timestamp.toString()";
+                        var timestamp = Date.now();
+                        document.getElementById("timestamp").innerHTML = timestamp.toString();
                     }
                 });
             };
+            setInterval(getData, 500);
         </script>
     </head>
     <body>
