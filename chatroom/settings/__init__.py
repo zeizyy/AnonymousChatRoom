@@ -1,6 +1,6 @@
-from chat.settings.production import *
+from chatroom.settings.production import *
 
 try:
-	from chat.settings.local import *
+	from chatroom.settings.local import *
 except:
 	pass
