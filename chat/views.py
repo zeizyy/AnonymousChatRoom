@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render_to_response
 from chat.models import *
+from django.utils import timezone
 import math
 
 ROOM_SEPARATION = 10
@@ -43,7 +44,17 @@ def get_message(request):
     return _success_response(request, [('This is an exmaple message', 'n'), ('Someone has left', 'l')])
 
 def post_message(request):
-    pass
+    if request.method != 'POST':
+        return _error_response(request, "TypeError")
+    uid = request.POST['uid']
+    user = User.objects.get(pk=uid)
+    cid = request.POST['cid']
+    chatroom = ChatRoom.objects.get(pk=cid)
+    text = request.POST['text']
+    current_time = timezone.now()
+    msg = Message(user=user, chatroom=chatroom, timestamp=current_time, text=msg, type='n')
+    msg.save()
+    return _success_response()
 
 def _error_response(request, error_msg):
     return JsonResponse({'status': False, 'error': error_msg})

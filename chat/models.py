@@ -26,8 +26,9 @@ class ChatRoom(models.Model):
 
 class Message(models.Model):
     user = models.ForeignKey(User)
+    chatroom = models.ForeignKey(ChatRoom)
     timestamp = models.DateTimeField(default=timezone.now)
-    msg = models.CharField(max_length=200)
+    text = models.CharField(max_length=200)
     type = models.CharField(max_length=1, choices=MESSAGETYPE)
 
     def __str__(self):
