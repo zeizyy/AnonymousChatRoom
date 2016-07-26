@@ -19,4 +19,6 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^chatroom/', include('chat.urls')),
+    url(r'^$', view='chat.views.index'),
+
 ]
