@@ -11,6 +11,10 @@ ROOM_SEPARATION = 10
 def index(request):
     return render_to_response('index.html')
 
+def index(request):
+    return HttpResponse("Index Page")
+
+
 def start_chat_room(request):
     if request.method != 'GET':
         return HttpResponse('error')
@@ -55,6 +59,9 @@ def post_message(request):
     msg = Message(user=user, chatroom=chatroom, timestamp=current_time, text=msg, type='n')
     msg.save()
     return _success_response()
+
+def test(request):
+    return render_to_response('test.html')
 
 def _error_response(request, error_msg):
     return JsonResponse({'status': False, 'error': error_msg})

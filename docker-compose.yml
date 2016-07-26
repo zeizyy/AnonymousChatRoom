@@ -1,6 +1,6 @@
 chat:
    container_name: chat
-   image: tp33/django:1.2
+   image: tp33/django-docker:1.3
    external_links:
       - mysql:db
    ports:
