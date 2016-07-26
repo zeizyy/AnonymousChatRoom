@@ -8,8 +8,12 @@ import math
 ROOM_SEPARATION = 10
 
 # Create your views here.
-def index(request):
+def redirect(request):
     return render_to_response('chatroom_redirect.html')
+
+def index(request):
+    return HttpResponse("Index Page")
+
 
 def start_chat_room(request):
     if request.method != 'GET':
