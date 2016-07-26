@@ -43,7 +43,7 @@ def get_message(request):
     return _success_response(request, [('This is an exmaple message', 'n'), ('Someone has left', 'l')])
 
 def post_message(request):
-    
+    pass
 
 def _error_response(request, error_msg):
     return JsonResponse({'status': False, 'error': error_msg})
