@@ -12,34 +12,23 @@
                 <div id="response">
                     <div class="row" id="frame1">
                         <div class="col-md-10"><div id="m1" class="well-sm">This</div></div>
-                        <div class="col-md-2"><a href="#" class="btn btn-default">Like</a></div>
                     </div>
-                    <div class="row" id="frame1">
+                    <div class="row" id="frame2">
                         <div class="col-md-10"><div id="m1" class="well-sm">This</div></div>
-                        <div class="col-md-2"><a href="#" class="btn btn-default">Like</a></div>
                     </div>
-                    <div class="row" id="frame1">
+                    <div class="row" id="frame3">
                         <div class="col-md-10"><div id="m1" class="well-sm">This</div></div>
-                        <div class="col-md-2"><a href="#" class="btn btn-default">Like</a></div>
                     </div>
-                    <div class="row" id="frame1">
+                    <div class="row" id="frame4">
                         <div class="col-md-10"><div id="m1" class="well-sm">This</div></div>
-                        <div class="col-md-2"><a href="#" class="btn btn-default">Like</a></div>
                     </div>
-                    <div class="row" id="frame1">
+                    <div class="row" id="frame5">
                         <div class="col-md-10"><div id="m1" class="well-sm">This</div></div>
-                        <div class="col-md-2"><a href="#" class="btn btn-default">Like</a></div>
                     </div>
-{#                    <div id="frame2"><div id="m2" class="well-sm">This</div></div>#}
-{#                    <div id="frame3"><div id="m3" class="well-sm">This</div></div>#}
-{#                    <div id="frame4"><div id="m4" class="well-sm">This</div></div>#}
-{#                    <div id="frame5"><div id="m5" class="well-sm">This</div></div>#}
                 </div>
                 <div class="row">
                     <div class="col-md-10">
                 <div class="input-group">
-
-
                             <span class="input-group-btn">
                             <button style="height: 45px;" id="fontChanger" class="btn btn-default" type="button">T</button>
                             </span>
@@ -52,10 +41,11 @@
 
                 </div>
             </div>
-			<div id="getMessages">
-                <button id="likeButton">Like</button>
-                <button id="reportButton">Report</button>
+			<div id="buttons" class="col-md-2">
+                <div id="likeButton" style="display:none;"><a href="#" class="btn btn-default">Like</a></div>
+                <div id="reportButton" style="display:none;"><a href="#" class="btn btn-default">Report</a></div>
             </div>
+			<div id="invisible"></div>
         </div>
 <!-- Font option list -->
         <div class="col-md-3 col-md-offset-4" id="font-list" >
@@ -72,7 +62,7 @@
  	</body>
 
     <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
-{#    <script src="{% static 'scripts/main.js' %}"></script>#}
+    <script src="{% static 'scripts/main.js' %}"></script>
     <script>
         $(function(){
             get_messages("{{ chatroom.id }}");

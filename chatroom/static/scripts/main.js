@@ -32,17 +32,17 @@
                         console.log(responseObject);
                         // Display the JSON query status
                         // Move the button out of the response div
-                        var getMessagesDiv = document.getElementById("messages");
-                        var likeButton = document.getElementById("likeButton");
-                        var reportButton = document.getElementById("reportButton");
-                        getMessagesDiv.appendChild(likeButton);
-                        getMessagesDiv.appendChild(reportButton);
-                        likeButton.style.display = "none";
-                        reportButton.style.display = "none";
-                        // Update button display variable
-                        //buttonsShown = false;
-                        // Remove the current content
-                        var messages = document.getElementById("response");
+                        //var getMessagesDiv = document.getElementById("messages");
+						var invisible = document.getElementById("buttons");
+						var buttons = document.getElementById("buttons");
+						var likeButton = document.getElementById("likeButton");
+						var reportButton = document.getElementById("reportButton");
+						likeButton.style.display = "none";
+						reportButton.style.display = "none";
+						invisible.appendChild(likeButton);
+						invisible.appendChild(reportButton);
+						// Remove the current content in response div
+						var messages = document.getElementById("response");
                         while(messages.firstChild) {
                             messages.removeChild(messages.firstChild);
                         }
@@ -52,48 +52,43 @@
                                 var well_id = "m"+(index+1).toString();
                                 var text = msgs[index][0];
                                 var type = msgs[index][1];
-								var messageOuterDiv = document.createElement("div");
-                                var messageContentDiv = document.createElement("div");  // <div>
-								messageOuterDiv.appendChild(messageContentDiv);
-								messageOuterDiv.setAttribute("id", "frame" + (index+1).toString());
-                                var messageContentP = document.createElement("p");  // <p>
-                                messageContentDiv.appendChild(messageContentP);
-
-                                //messageContentDiv.setAttribute("id", "div" + messageId.toString()); // Assign the message id to the <div> element
-                                messageContentDiv.setAttribute("id", well_id); // Assign the message id to the <div> element
-                                messageContentDiv.setAttribute("class", "well-sm"); // Assign the message id to the <div> element
-                                messageContentDiv.setAttribute("onclick", "onMessageClicked(" + (index+1).toString() + ")");    // Set the onclick function
-                                //messageContentP.setAttribute("id", "p" + messageId.toString()); // Assign the message id to the <p> element
-                                messageContentP.style.display = "inline";   // Make the message display as inline element
-                                //messageId++;    // Update messageId
-                                var messageContentText = document.createTextNode(text); // Get the text to display
-                                /* Put the text into the <p> element */
-                                messageContentDiv.appendChild(messageContentText);
-                                /* Set the color based on the message type */
-                                //if(type == "n") {
-                                //    messageContentP.style.color = "grey";
-                                //} else if(type == "l") {
-                                //    messageContentP.style.color = "red";
-                                //} else {
-                                //    messageContentP.style.color = "green";
-                                //}
-                                messages.appendChild(messageOuterDiv);
+								// Create a frame
+								var messageFrame = document.createElement("div");
+								messageFrame.setAttribute("id", "frame" + (index+1).toString());
+								messageFrame.setAttribute("class", "row");
+								messageFrame.setAttribute("onclick", "onMessageClicked(" + (index+1).toString() + ")");
+								// Create a textWraper
+								var messageTextWrapper = document.createElement("div");
+								messageTextWrapper.setAttribute("class", "col-md-10");
+								messageFrame.appendChild(messageTextWrapper);
+								// Create a text m
+								var messageTextDiv = document.createElement("div");
+								messageTextDiv.setAttribute("id", "m" + (index+1).toString());
+								messageTextDiv.setAttribute("class", "well-sm");
+								messageTextWrapper.appendChild(messageTextDiv);
+								// Put text into the text m
+								var messageTextContent = document.createTextNode(text);
+								messageTextDiv.appendChild(messageTextContent);
+								// Put everything back to the message div
+                                messages.appendChild(messageFrame);
 
                         });
 
                         // Put the buttons back beside the message
                         if(buttonAttachedID != -1) {
+							buttons.style.display = "inline";
                             likeButton.style.display = "inline";
-                            reportButton.style.display = "inline";
-                            var attachedMessageDiv = document.getElementById("frame" + buttonAttachedID.toString());
-                            attachedMessageDiv.appendChild(likeButton);
-                            attachedMessageDiv.appendChild(reportButton);
+							reportButton.style.display = "inline";
+                            var attachedMessageFrame = document.getElementById("frame" + buttonAttachedID.toString());
+                            attachedMessageFrame.appendChild(buttons);
+							buttons.appendChild(likeButton);
+							buttons.appendChild(reportButton);
                         }
                     },
                     complete: function(){
                         setTimeout(function(){
                             get_messages(cid);
-                        }, 500);
+                        }, 5000);
                     },
                 });
             };
@@ -102,19 +97,22 @@
         //window.alert(messageId.toString());
         //document.getElementById("p" + messageId.toString()).style.color = "black";
         // Get both buttons
+		var buttons = document.getElementById('buttons');
         var likeButton = document.getElementById('likeButton');
         var reportButton = document.getElementById('reportButton');
         // Make them inline
+		buttons.style.display = "inline";
         likeButton.style.display = "inline";
         reportButton.style.display = "inline";
         // Modify their onclick function
         likeButton.setAttribute("onclick", "messageLiked("+ messageId.toString()+")");
         reportButton.setAttribute("onclick", "messageReported("+ messageId.toString()+")");
         // Get the clicked message
-        var clickedDiv = document.getElementById('frame' + messageId.toString());
+        var clickedFrame = document.getElementById('frame' + messageId.toString());
         // Move both botton into the div with the clicked message
-        clickedDiv.appendChild(likeButton);
-        clickedDiv.appendChild(reportButton);
+        clickedFrame.appendChild(buttons);
+		buttons.appendChild(likeButton);
+		buttons.appendChild(reportButton);
         // Update button display variable
         buttonAttachedID = messageId;
     }
@@ -132,15 +130,17 @@
 
     /* Hide both buttons if mouse click else where */
     $("body").click(function(event) {
+			window.alert(event.target.id);
         /* Act on the event */
-        //window.alert(event.target.nodeName);
-        if(/*buttonsShown && */event.target.nodeName != "P" && event.target.nodeName != "BUTTON" && event.target.nodeName != "DIV") {
+        if(event.target.nodeName != "P" && event.target.nodeName != "A" && event.target.nodeName != "DIV") {
             // Move the button out of the response div
-            var getMessagesDiv = document.getElementById("getMessages");
+            var invisibleDiv = document.getElementById("invisible");
+			var buttons = document.getElementById("buttons");
             var likeButton = document.getElementById("likeButton");
             var reportButton = document.getElementById("reportButton");
-            getMessagesDiv.appendChild(likeButton);
-            getMessagesDiv.appendChild(reportButton);
+			invisibleDiv.appendChild(buttons);
+            buttons.appendChild(likeButton);
+            buttons.appendChild(reportButton);
             likeButton.style.display = "none";
             reportButton.style.display = "none";
             // Update button display variable
