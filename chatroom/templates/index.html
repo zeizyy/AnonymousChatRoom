@@ -1,16 +1,18 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
 <head>
-<script>
-if (navigator.geolocation){
-    navigator.geolocation.getCurrentPosition(showPosition);
-}
-else{
-    window.location.href = '/chatroom/create?x=-1&y=-1';
-}
-function showPosition(position) {
-    window.location.href = '/chatroom/create?x=' + position.coords.latitude + '&y=' + position.coords.longitude;
-}
-</script>
+    <title>bbman</title>
+    <script>
+        if (navigator.geolocation){
+            navigator.geolocation.getCurrentPosition(showPosition);
+        }
+        else{
+            window.location.href = '/chatroom/create?x=-1&y=-1';
+        }
+        function showPosition(position) {
+            window.location.href = '/chatroom/create?x=' + position.coords.latitude + '&y=' + position.coords.longitude;
+        }
+    </script>
 </head>
 </html>

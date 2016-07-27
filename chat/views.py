@@ -70,7 +70,7 @@ def test(request):
     return render_to_response('test.html')
 
 def _error_response(request, error_msg):
-    return JsonResponse({'status': False, 'error': error_msg})
+    return JsonResponse({'status': False, 'resp': error_msg})
 
 def _success_response(request, resp=None):
     if resp:

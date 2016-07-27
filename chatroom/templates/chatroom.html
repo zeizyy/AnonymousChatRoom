@@ -1,4 +1,5 @@
 {% load staticfiles %}
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 	<head>
@@ -6,6 +7,7 @@
 		<title>Anonymous Chatroom</title>
 	</head>
 	<body>
+        <a href="/leave" class="right">Leave</a>
 		<h2>Chatroom {{ chatroom.id }} - User: {{ user.id }}</h2>
 		<div id="getMessages">
             <div id="status"></div>
@@ -14,6 +16,20 @@
         </div>
 		<b1><input id="messageBox" type="text" placeholder="Please enter your message."></b1>
 		<b1><button id="sendButton" type="button">Enter</button></b1>
+
+        <div class="row white">
+            <div class="columns large-12">
+                <form method="POST" id="message-form">
+                    {% csrf_token %}
+                    <div class="fieldWrapper" id="the_message">
+                        <!-- {{ form.text }} -->
+                        <input type="text" name="message" id="message-text">
+                        <input id="send_button" type="submit" value="Post" class="tiny button">
+                    </div>
+                    <div id="results"></div>
+                </form>
+            </div>
+        </div>
 	</body>
 
     <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
@@ -21,6 +37,12 @@
     <script>
         $(function(){
             get_messages("{{ chatroom.id }}");
+            var send = document.getElementById("send_button");
+            send.addEventListener("click", function(e){
+                e.preventDefault();
+                var inputBox = document.getElementById("message-text");
+                send_message({{user.id}}, {{chatroom.id}}, inputBox.value);
+                inputBox.value = "";
         });
-    </script>
-</html>
+    });
+</script>
