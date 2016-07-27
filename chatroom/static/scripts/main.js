@@ -88,8 +88,6 @@
                             var attachedMessageDiv = document.getElementById("frame" + buttonAttachedID.toString());
                             attachedMessageDiv.appendChild(likeButton);
                             attachedMessageDiv.appendChild(reportButton);
-							reportButton.style.right = "0px";
-							likeButton.style.right = "0px";
                         }
                     },
                     complete: function(){
