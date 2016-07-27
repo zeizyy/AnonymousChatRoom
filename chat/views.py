@@ -87,7 +87,7 @@ def leave(request):
     userToRemove = User.objects.get(pk=userId)
     chatroomId = request.POST['cid']
     print chatroomId
-    masterChatroom = Chatroom.objects.get(pk=chatroomId)
+    masterChatroom = ChatRoom.objects.get(pk=chatroomId)
 
     if masterChatroom.users.count() == 1:
         if masterChatroom.users.first().id != userId:
