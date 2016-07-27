@@ -66,6 +66,26 @@ def post_message(request):
     msg.save()
     return _success_response(request)
 
+def leave(request):
+
+    if request.method != 'POST':
+        return _error_response(request, "TypeError")
+    print "coanima"
+    userId = request.POST['uid']
+    print userId
+    userToRemove = User.objects.get(pk=userId)
+    chatroomId = request.POST['cid']
+    print chatroomId
+    masterChatroom = Chatroom.objects.get(pk=chatroomId)
+
+    if masterChatroom.users.count() == 1:
+        if masterChatroom.users.first().id != userId:
+            return _error_response(request, "User trying to leave does not exist in chatroom.")
+
+    else:
+        return _success_response(request)
+
+
 def test(request):
     return render_to_response('test.html')
 
