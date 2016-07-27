@@ -2,22 +2,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src"{% static 'scripts/main.js' %}">
-// window.onload = getLocation();
-
-</script>
-<title>bbman</title>
+    <title>bbman</title>
+    <script>
+        if (navigator.geolocation){
+            navigator.geolocation.getCurrentPosition(showPosition);
+        }
+        else{
+            window.location.href = '/chatroom/create?x=-1&y=-1';
+        }
+        function showPosition(position) {
+            window.location.href = '/chatroom/create?x=' + position.coords.latitude + '&y=' + position.coords.longitude;
+        }
+    </script>
 </head>
-<script>
-if (navigator.geolocation){
-    navigator.geolocation.getCurrentPosition(showPosition);
-}
-else{
-    window.location.href = '/chatroom/create?x=-1&y=-1';
-}
-function showPosition(position) {
-    window.location.href = '/chatroom/create?x=' + position.coords.latitude + '&y=' + position.coords.longitude;
-}
-        // getLocation();
-</script>
 </html>
