@@ -1,11 +1,11 @@
 
     // AJAX for posting
-    function send_message() {
+    function send_message(uid, cid, text) {
         console.log("send message is working!") // sanity check
         $.ajax({
-            url : '/chatroom/create?x=' + position.coords.latitude + '&y=' + position.coords.longitude,
+            url : '/chatroom/post/',
             type : "POST", // http method
-            data: {uid: uid, cid: cid, message: $('#mesage-text').val()},
+            data: {uid: uid, cid: cid, text: text},
             // handle a non-successful response
             error : function(xhr,errmsg,err) {
                 $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+

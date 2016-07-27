@@ -1,5 +1,4 @@
 {% load staticfiles %}
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 	<head>
@@ -14,16 +13,13 @@
             <div id="response"></div>
             <div id="timestamp"></div>
         </div>
-		<b1><input id="messageBox" type="text" placeholder="Please enter your message."></b1>
-		<b1><button id="sendButton" type="button">Enter</button></b1>
 
         <div class="row white">
             <div class="columns large-12">
                 <form method="POST" id="message-form">
                     {% csrf_token %}
                     <div class="fieldWrapper" id="the_message">
-                        <!-- {{ form.text }} -->
-                        <input type="text" name="message" id="message-text">
+                        <input type="text" name="message" id="message-text" placeholder="Please enter your message.">
                         <input id="send_button" type="submit" value="Post" class="tiny button">
                     </div>
                     <div id="results"></div>
