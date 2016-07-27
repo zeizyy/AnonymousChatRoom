@@ -18,7 +18,7 @@
     function get_messages(cid) {
                 $.ajax({
                     type: "GET",
-                    url: 'http://127.0.0.1:8000/chatroom/get?cid=' + cid,
+                    url: '/chatroom/get?cid=' + cid,
                     dataType: 'json',
                     // Process the data
                     success: function(responseObject){

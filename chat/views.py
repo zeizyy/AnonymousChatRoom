@@ -3,7 +3,10 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render_to_response
 from chat.models import *
 from django.utils import timezone
+from chatroom import settings
 import math
+
+DOMAIN_ROOT = settings.DOMAIN_ROOT
 
 ROOM_SEPARATION = 10
 
