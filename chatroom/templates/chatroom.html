@@ -3,9 +3,10 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="{% static 'css/chatroom_style.css' %}">
-		<title>Anonymous Chatroom</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<title>BBMAN</title>
 	</head>
-	<body>
+	<body style="margin-top:150px;">
         <a href="/chatroom/leave/" class="right">Leave</a>
 		<h2>Chatroom {{ chatroom.id }} - User: {{ user.id }}</h2>
 		<div id="getMessages">
@@ -15,20 +16,33 @@
             <button id="likeButton">Like</button>
             <button id="reportButton">Report</button>
         </div>
+	
+			<div class="row">
+        		<div class="col-md-4 col-md-offset-4">
+        			<div id="m1" class="well-sm">This</div>
+        			<div id="m2" class="well-sm">This</div>
+        			<div id="m3" class="well-sm">This</div>
+        			<div id="m4" class="well-sm">This</div>
+        			<div id="m5" class="well-sm">This</div>
 
-        <div class="row white">
-            <div class="columns large-12">
-                <form method="POST" id="message-form">
-                    {% csrf_token %}
-                    <div class="fieldWrapper" id="the_message">
-                        <input type="text" name="message" id="message-text" placeholder="Please enter your message.">
-                        <input id="send_button" type="submit" value="Post" class="tiny button">
-                    </div>
-                    <div id="results"></div>
-                </form>
-            </div>
-        </div>
-	</body>
+					<!-- <p id="m2" class="messageBox">
+					<p id="m3" class="messageBox">
+					<p id="m4" class="messageBox">
+					<p id="m5" class="messageBox">	 -->
+					<div class="input-group">
+						<span class="input-group-btn">
+							<button id="fontChanger" class="btn btn-default" type="button">T</button>
+						</span>
+						<input class="form-control" id="inputBox" type="text" placeholder="Please enter your message.">
+		 				<span class="input-group-btn">
+		 					<button id="sendButton" class="btn btn-default" type="button">E</button>
+		 				</span>
+        			</div>
+					
+				</div>
+			
+			</div>
+ 	</body>
 
     <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
     <script src="{% static 'scripts/main.js' %}"></script>
@@ -45,7 +59,7 @@
         });
         window.onbeforeunload = function (event) {
             var message = "Ri!";
-            $.post('http://127.0.0.1:8000/chatroom/leave/', {"uid": {{user.id}} ,"cid": {{chatroom.id}} });
+            $.post('/chatroom/leave/', {"uid": {{user.id}} ,"cid": {{chatroom.id}} });
             return message;
 
         }

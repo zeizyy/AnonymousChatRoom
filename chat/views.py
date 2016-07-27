@@ -8,7 +8,7 @@ import math
 
 DOMAIN_ROOT = settings.DOMAIN_ROOT
 
-ROOM_SEPARATION = 10
+ROOM_SEPARATION = 0.01
 
 # Create your views here.
 def redirect(request):
@@ -87,7 +87,7 @@ def leave(request):
 
     if masterChatroom.users.count() == 1:
         if masterChatroom.users.first().id != userId:
-            masterChatroom.delete();
+            masterChatroom.delete()
             return _error_response(request, "User trying to leave does not exist in chatroom.")
 
     else:
