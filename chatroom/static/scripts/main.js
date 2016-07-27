@@ -93,13 +93,13 @@
                     complete: function(){
                         setTimeout(function(){
                             get_messages(cid);
-                        }, 20000);
+                        }, 500);
                     },
                 });
             };
 
     function onMessageClicked(messageId) {
-        window.alert(messageId.toString());
+        //window.alert(messageId.toString());
         //document.getElementById("p" + messageId.toString()).style.color = "black";
         // Get both buttons
         var likeButton = document.getElementById('likeButton');
