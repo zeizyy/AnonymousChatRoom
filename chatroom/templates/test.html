@@ -17,6 +17,7 @@
                         document.getElementById("status").innerHTML = "Status: " + responseObject.status;
                         /* Put the elements back to the DOM */
                         var messages = document.getElementById("response");
+                        // Remove all the current children
                         while(messages.firstChild) {
                             messages.removeChild(messages.firstChild);
                         }
@@ -43,6 +44,19 @@
                 });
             };
             setInterval(getData, 500);
+
+            window.onbeforeunload = function (event) {
+                var message = 'Hey!';
+                // Send notification to the server
+                //$.$.post('http://127.0.0.1:8000/chatroom/leave/', {param1: 'value1'});
+                return message;
+            };
+
+            /* Close the current browser window */
+            function closeWindow() {
+                //var win = window.open("", "_self");
+                window.close();
+            }
         </script>
     </head>
     <body>

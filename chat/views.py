@@ -9,7 +9,7 @@ ROOM_SEPARATION = 10
 
 # Create your views here.
 def redirect(request):
-    return render_to_response('index.html')
+    return render_to_response('chatroom_redirect.html')
 
 def index(request):
     return HttpResponse("Index Page")
