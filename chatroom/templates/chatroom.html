@@ -43,7 +43,7 @@
         });
         window.onbeforeunload = function (event) {
             var message = "Ri!";
-            $.post('http://127.0.0.1:8000/chatroom/leave/', {"uid": {{user.id}} ,"cid": {{chatroom.id}} });
+            $.post('/chatroom/leave/', {"uid": {{user.id}} ,"cid": {{chatroom.id}} });
             return message;
 
         }
