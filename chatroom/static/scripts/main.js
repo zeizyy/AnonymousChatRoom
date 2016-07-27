@@ -42,9 +42,11 @@
                                 messageContentP.appendChild(messageContentText);
                                 /* Set the color based on the message type */
                                 if(type == "n") {
-                                    messageContentP.style.color = "green";
-                                } else {
                                     messageContentP.style.color = "grey";
+                                } else if(type == "l") {
+                                    messageContentP.style.color = "red";
+                                } else {
+                                    messageContentP.style.color = "green";
                                 }
                                 messages.appendChild(messageContentP);
 
