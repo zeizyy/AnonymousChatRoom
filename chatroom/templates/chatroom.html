@@ -3,18 +3,33 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="{% static 'css/chatroom_style.css' %}">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<title>Anonymous Chatroom</title>
 	</head>
 	<body>
 		<h2>Chatroom {{ chatroom.id }} - User: {{ user.id }}</h2>
-		<div id="getMessages">
-            <div id="status"></div>
-            <div id="response"></div>
-            <div id="timestamp"></div>
-        </div>
-		<b1><input id="messageBox" type="text" value="Please enter your message."></b1>
-		<b1><button id="sendButton" type="button">Enter</button></b1>
-	</body>
+		
+			<div class="row">
+        		<div class="col-md-4 col-md-offset-4">
+        			<p id="m1" class="messageBox">
+					<p id="m2" class="messageBox">
+					<p id="m3" class="messageBox">
+					<p id="m4" class="messageBox">
+					<p id="m5" class="messageBox">	
+					<div class="input-group">
+						<span class="input-group-btn">
+							<button id="fontChanger" class="btn btn-default" type="button">T</button>
+						</span>
+						<input class="form-control" type="text" value="Please enter your message.">
+		 				<span class="input-group-btn">
+		 					<button id="sendButton" class="btn btn-default" type="button">E</button>
+		 				</span>
+        			</div>
+					
+				</div>
+			
+			</div>
+ 	</body>
 
     <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
     <script src="{% static 'scripts/main.js' %}"></script>

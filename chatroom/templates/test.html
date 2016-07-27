@@ -24,6 +24,7 @@
                         for(i = 0; i < responseObject.resp.length; i++) {
                             // Create an entry for the message
                             var messageContentP = document.createElement("p");  // <p>
+                            messageContentP.setAttribute("id", "");
                             var messageContentText = document.createTextNode("Message " + i.toString() + ": " + responseObject.resp[i][0]); // Get the text to display
                             /* Put the text into the <p> element */
                             messageContentP.appendChild(messageContentText);

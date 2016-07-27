@@ -1,13 +1,50 @@
-b1 {
-	display: inline;
+p.messageBox {
+	/*height: 42px;
+	width: 403px;*/
+	height: 42px;
+	border: 1.5pt solid;
 }
 
-#messageBox {
-    height: 37.5px;
-    width: 700px;
-    padding: 0px;
+/*#m1 {
+	right: 50%;
+	/*margin-left: -200px;*/
+
 }
+
+
+/*#inputBox {
+    height: 42px;
+    width: 295px;
+    margin-left: 9px;
+    border: 1.5pt solid;
+    border-color: #ffce00;
+}
+
+button.myEle {
+	height: 42px;
+	border: 1.5pt solid;
+    border-color: #ffce00;
+    border-radius: 5.578px;
+}
+
+#fontChanger {
+	height: 42px;
+	width: 44px;
+}
+
+/*#messSenderDiv {
+	width: 400px;
+	height: 42px;
+	left: 50%;
+	margin-left: -200px;
+}*/
+
 #sendButton {
-	height: 41px;
-	width: 70px;
+	height: 42px;
+	width: 44px;
 }
+
+button.b {
+	height: 42px;
+	width: 44px;
+}*/
