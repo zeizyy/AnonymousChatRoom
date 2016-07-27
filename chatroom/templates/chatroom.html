@@ -93,9 +93,7 @@
     }, false);
         });
         window.onbeforeunload = function (event) {
-            var message = "Ri!";
             $.post('/chatroom/leave/', {"uid": {{user.id}} ,"cid": {{chatroom.id}} });
-            return message;
 
         }
 </script>
@@ -113,14 +111,14 @@
  
       // Run the effect
       $( "#font-list" ).toggle( selectedEffect, options, 500, callback );
-    };
+    }
  
     //callback function to bring a hidden box back
     function callback() {
       setTimeout(function() {
         $( "#font-list:visible" ).removeAttr( "style" ).fadeOut();
       }, 1000 );
-    };
+    }
  
     // Set effect from select menu value
     $( "#fontChanger" ).click( function() {
@@ -147,7 +145,8 @@
         });
     });
 
-        $(".font-option").mouseover(function() {
+
+    $(".font-option").mouseover(function() {
             $(this).addClass('bg-warning');
             var font = $(this).css("font-family");
             $("#inputBox").css("font-family", font)
@@ -160,6 +159,4 @@
         });
     // });
     $("#font-list").hide();
- 
-  } );
   </script>

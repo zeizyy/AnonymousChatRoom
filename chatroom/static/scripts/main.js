@@ -1,7 +1,6 @@
 
     // AJAX for posting
     function send_message(uid, cid, text) {
-        console.log("send message is working!") // sanity check
         $.ajax({
             url : '/chatroom/post/',
             type : 'POST', // http method
@@ -13,7 +12,7 @@
                 console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
             }
         });
-    };
+    }
 
     /* Global variable */
     //var buttonsShown = false;
@@ -88,9 +87,9 @@
                         setTimeout(function(){
                             get_messages(cid);
                         }, 1000);
-                    },
+                    }
                 });
-            };
+            }
 
     function onMessageClicked(messageId) {
         //window.alert(messageId.toString());
@@ -161,5 +160,5 @@
                 }
             }
         }
-    };
+    }
     
