@@ -3,7 +3,10 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render_to_response
 from chat.models import *
 from django.utils import timezone
+from chatroom import settings
 import math
+
+DOMAIN_ROOT = settings.DOMAIN_ROOT
 
 ROOM_SEPARATION = 10
 
@@ -25,17 +28,25 @@ def start_chat_room(request):
     user.save()
 
     # create chatroom
+    found = False
+    chatroom = None
     chatrooms = ChatRoom.objects.all()
     for room in chatrooms:
         distance = _get_distance(x_cord, y_cord, room)
         if distance < ROOM_SEPARATION:
             room.users.add(user)
             room.save()
-            return render_to_response('chatroom.html',{ 'user':user, 'chatroom' : room})
+            found = True
+            chatroom = room
+            break
 
-    chatroom = ChatRoom(x_cord = x_cord, y_cord = y_cord)
-    chatroom.save()
-    chatroom.users.add(user)
+    if not found:
+        chatroom = ChatRoom(x_cord = x_cord, y_cord = y_cord)
+        chatroom.save()
+        chatroom.users.add(user)
+
+    join_message = Message(user=user, chatroom=chatroom, text='Someone has joined!', type='j')
+    join_message.save()
 
     return render_to_response('chatroom.html',{ 'user':user, 'chatroom' : chatroom})
 

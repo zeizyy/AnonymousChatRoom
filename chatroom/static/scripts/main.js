@@ -4,7 +4,7 @@
         console.log("send message is working!") // sanity check
         $.ajax({
             url : '/chatroom/post/',
-            type : "POST", // http method
+            type : 'POST', // http method
             data: {uid: uid, cid: cid, text: text},
             // handle a non-successful response
             error : function(xhr,errmsg,err) {
@@ -18,7 +18,7 @@
     function get_messages(cid) {
                 $.ajax({
                     type: "GET",
-                    url: 'http://127.0.0.1:8000/chatroom/get?cid=' + cid,
+                    url: '/chatroom/get?cid=' + cid,
                     dataType: 'json',
                     // Process the data
                     success: function(responseObject){
@@ -42,9 +42,11 @@
                                 messageContentP.appendChild(messageContentText);
                                 /* Set the color based on the message type */
                                 if(type == "n") {
-                                    messageContentP.style.color = "green";
-                                } else {
                                     messageContentP.style.color = "grey";
+                                } else if(type == "l") {
+                                    messageContentP.style.color = "red";
+                                } else {
+                                    messageContentP.style.color = "green";
                                 }
                                 messages.appendChild(messageContentP);
 
