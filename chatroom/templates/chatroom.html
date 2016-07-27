@@ -1,4 +1,57 @@
-<!DOCTYPE html>
-<html>
-<h2>Chatroom {{ chatroom.id }} - User: {{ user.id }}</h2>
-</html>
+{% load staticfiles %}
+<head>
+    <meta charset="utf-8">
+    <title>bbman</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</head>
+<br><br>
+<div class="row white">
+    <div class="large-12 columns">
+        <a href="/leave" class="right">Leave</a>
+        <h2>Hi, user: {{user.id}}, chatroom: {{chatroom.id}}</h2>
+    </div>
+</div>
+
+<!-- The feed -->
+<div class="row white">
+    <div class="columns large-12">
+        <ul id="talk">
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <!-- {% for message in all_messages %}
+                <li>
+                    <strong>{{ message.text }}</strong> -
+                </li>
+            {% endfor %} -->
+        </ul>
+    </div>
+</div>
+
+<div class="row white">
+    <div class="columns large-12">
+        <form method="POST" id="message-form">
+            {% csrf_token %}
+            <div class="fieldWrapper" id="the_message">
+                <!-- {{ form.text }} -->
+                <input type="text" name="message" id="message-text">
+                <input id="send_button" type="submit" value="Post" class="tiny button">
+            </div>
+            <div id="results"></div>
+        </form>
+    </div>
+</div>
+<script src="{% static 'scripts/main.js' %}"></script>
+<script>
+    $(function(){
+        var send = document.getElementById("send_button");
+        send.addEventListener("click", function(e){
+            e.preventDefault();
+            var inputBox = document.getElementById("message-text");
+            send_message({{user.id}}, {{chatroom.id}}, inputBox.value);
+            inputBox.value = "";
+            
+        });
+    });
+</script>

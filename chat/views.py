@@ -56,15 +56,15 @@ def post_message(request):
     chatroom = ChatRoom.objects.get(pk=cid)
     text = request.POST['text']
     current_time = timezone.now()
-    msg = Message(user=user, chatroom=chatroom, timestamp=current_time, text=msg, type='n')
+    msg = Message(user=user, chatroom=chatroom, timestamp=current_time, text=text, type='n')
     msg.save()
-    return _success_response()
+    return _success_response(request)
 
 def test(request):
     return render_to_response('test.html')
 
 def _error_response(request, error_msg):
-    return JsonResponse({'status': False, 'error': error_msg})
+    return JsonResponse({'status': False, 'resp': error_msg})
 
 def _success_response(request, resp=None):
     if resp:

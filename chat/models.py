@@ -32,4 +32,4 @@ class Message(models.Model):
     type = models.CharField(max_length=1, choices=MESSAGETYPE)
 
     def __str__(self):
-        return self.user + ": " + self.msg
+        return str(self.user) + ": " + self.text

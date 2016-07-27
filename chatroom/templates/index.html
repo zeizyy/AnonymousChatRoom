@@ -1,6 +1,13 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
 <head>
+<script src"{% static 'scripts/main.js' %}">
+// window.onload = getLocation();
+
+</script>
+<title>bbman</title>
+</head>
 <script>
 if (navigator.geolocation){
     navigator.geolocation.getCurrentPosition(showPosition);
@@ -11,6 +18,6 @@ else{
 function showPosition(position) {
     window.location.href = '/chatroom/create?x=' + position.coords.latitude + '&y=' + position.coords.longitude;
 }
+        // getLocation();
 </script>
-</head>
 </html>
