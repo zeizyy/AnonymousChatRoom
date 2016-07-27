@@ -27,13 +27,12 @@
                     // Process the data
                     success: function(responseObject){
                         // Fake message ID
-                        var messageId = 0;
+                        //var messageId = 0;
                         // Log responseObject
                         console.log(responseObject);
                         // Display the JSON query status
-                        document.getElementById("status").innerHTML = "Status: " + responseObject.status;
                         // Move the button out of the response div
-                        var getMessagesDiv = document.getElementById("getMessages");
+                        var getMessagesDiv = document.getElementById("messages");
                         var likeButton = document.getElementById("likeButton");
                         var reportButton = document.getElementById("reportButton");
                         getMessagesDiv.appendChild(likeButton);
@@ -50,27 +49,31 @@
                         // Display the JSON query messages
                         var msgs = responseObject.resp;
                             $.each(msgs , function(index){
+                                var well_id = "m"+(index+1).toString();
                                 var text = msgs[index][0];
                                 var type = msgs[index][1];
                                 var messageContentDiv = document.createElement("div");  // <div>
                                 var messageContentP = document.createElement("p");  // <p>
                                 messageContentDiv.appendChild(messageContentP);
-                                messageContentDiv.setAttribute("id", "div" + messageId.toString()); // Assign the message id to the <div> element
-                                messageContentDiv.setAttribute("onclick", "onMessageClicked(" + messageId.toString() + ")");    // Set the onclick function
-                                messageContentP.setAttribute("id", "p" + messageId.toString()); // Assign the message id to the <p> element
+
+                                //messageContentDiv.setAttribute("id", "div" + messageId.toString()); // Assign the message id to the <div> element
+                                messageContentDiv.setAttribute("id", well_id); // Assign the message id to the <div> element
+                                messageContentDiv.setAttribute("class", "well-sm"); // Assign the message id to the <div> element
+                                messageContentDiv.setAttribute("onclick", "onMessageClicked(" + (index+1).toString() + ")");    // Set the onclick function
+                                //messageContentP.setAttribute("id", "p" + messageId.toString()); // Assign the message id to the <p> element
                                 messageContentP.style.display = "inline";   // Make the message display as inline element
-                                messageId++;    // Update messageId
-                                var messageContentText = document.createTextNode("Message " + text); // Get the text to display
+                                //messageId++;    // Update messageId
+                                var messageContentText = document.createTextNode(text); // Get the text to display
                                 /* Put the text into the <p> element */
-                                messageContentP.appendChild(messageContentText);
+                                messageContentDiv.appendChild(messageContentText);
                                 /* Set the color based on the message type */
-                                if(type == "n") {
-                                    messageContentP.style.color = "grey";
-                                } else if(type == "l") {
-                                    messageContentP.style.color = "red";
-                                } else {
-                                    messageContentP.style.color = "green";
-                                }
+                                //if(type == "n") {
+                                //    messageContentP.style.color = "grey";
+                                //} else if(type == "l") {
+                                //    messageContentP.style.color = "red";
+                                //} else {
+                                //    messageContentP.style.color = "green";
+                                //}
                                 messages.appendChild(messageContentDiv);
 
                         });
@@ -83,15 +86,11 @@
                             attachedMessageDiv.appendChild(likeButton);
                             attachedMessageDiv.appendChild(reportButton);
                         }
-
-                        /* Get the current timestamp */
-                        var timestamp = Date.now();
-                        document.getElementById("timestamp").innerHTML = timestamp.toString();
                     },
                     complete: function(){
                         setTimeout(function(){
                             get_messages(cid);
-                        }, 20000/*2000*/);
+                        }, 500);
                     },
                 });
             };

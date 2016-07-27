@@ -7,41 +7,30 @@
 		<title>BBMAN</title>
 	</head>
 	<body style="margin-top:150px;">
-        <a href="/chatroom/leave/" class="right">Leave</a>
-		<h2>Chatroom {{ chatroom.id }} - User: {{ user.id }}</h2>
-		<div id="getMessages">
-            <div id="status"></div>
-            <div id="response"></div>
-            <div id="timestamp"></div>
-            <button id="likeButton">Like</button>
-            <button id="reportButton">Report</button>
+        <div class="row" id="messages">
+            <div class="col-md-4 col-md-offset-4">
+                <div id="response">
+                    <div id="m1" class="well-sm">This</div>
+                    <div id="m2" class="well-sm">This</div>
+                    <div id="m3" class="well-sm">This</div>
+                    <div id="m4" class="well-sm">This</div>
+                    <div id="m5" class="well-sm">This</div>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <button id="fontChanger" class="btn btn-default" type="button">T</button>
+                    </span>
+                    <input class="form-control" id="inputBox" type="text" placeholder="Please enter your message.">
+                    <span class="input-group-btn">
+                        <button id="sendButton" class="btn btn-default" type="button"><img style="height: 20px; width:15px" src="{% static 'img/send.png' %}"></button>
+                    </span>
+                </div>
+            </div>
+			<div id="getMessages">
+                <button id="likeButton">Like</button>
+                <button id="reportButton">Report</button>
+            </div>
         </div>
-	
-			<div class="row">
-        		<div class="col-md-4 col-md-offset-4">
-        			<div id="m1" class="well-sm">This</div>
-        			<div id="m2" class="well-sm">This</div>
-        			<div id="m3" class="well-sm">This</div>
-        			<div id="m4" class="well-sm">This</div>
-        			<div id="m5" class="well-sm">This</div>
-
-					<!-- <p id="m2" class="messageBox">
-					<p id="m3" class="messageBox">
-					<p id="m4" class="messageBox">
-					<p id="m5" class="messageBox">	 -->
-					<div class="input-group">
-						<span class="input-group-btn">
-							<button id="fontChanger" class="btn btn-default" type="button">T</button>
-						</span>
-						<input class="form-control" id="inputBox" type="text" placeholder="Please enter your message.">
-		 				<span class="input-group-btn">
-		 					<button id="sendButton" class="btn btn-default" type="button">E</button>
-		 				</span>
-        			</div>
-					
-				</div>
-			
-			</div>
  	</body>
 
     <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
@@ -49,10 +38,10 @@
     <script>
         $(function(){
             get_messages("{{ chatroom.id }}");
-            var send = document.getElementById("send_button");
+            var send = document.getElementById("sendButton");
             send.addEventListener("click", function(e){
                 e.preventDefault();
-                var inputBox = document.getElementById("message-text");
+                var inputBox = document.getElementById("inputBox");
                 send_message({{user.id}}, {{chatroom.id}}, inputBox.value);
                 inputBox.value = "";
                  });

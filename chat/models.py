@@ -7,6 +7,7 @@ MESSAGETYPE = (
     ('j', 'Join'),
     ('l', 'Leave'),
     ('n', 'Normal'),
+    ('z', 'Like')
 )
 
 class User(models.Model):

@@ -61,8 +61,15 @@ def get_message(request):
     cid = request.GET.get('cid', None)
     chatroom = ChatRoom.objects.get(pk=cid)
     msgs = Message.objects.filter(chatroom=chatroom)
-    msgs_dict = [(msg.text, msg.type) for msg in msgs][-5:]
+    msgs_dict = [(msg.text, msg.type, msg.id) for msg in msgs][-5:]
     return _success_response(request, msgs_dict)
+
+def like(request):
+    mid = request.GET.get('mid')
+    msg = Message.objects.get(pk = mid)
+    msg.type = 'z'
+    msg.save()
+    return _success_response(request)
 
 def post_message(request):
     if request.method != 'POST':

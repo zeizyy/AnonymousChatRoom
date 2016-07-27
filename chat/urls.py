@@ -9,4 +9,5 @@ urlpatterns = patterns('',
     url(r'post/$', views.post_message ,name='PostMessage'),
     url(r'test/$', views.test, name='Test'),
     url(r'leave/$', views.leave, name='Leave'),
+    url(r'like/$', views.like, name='Like'),
 )
