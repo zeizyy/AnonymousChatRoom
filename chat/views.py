@@ -91,9 +91,17 @@ def leave(request):
 
     if masterChatroom.users.count() == 1:
         if masterChatroom.users.first().id != userId:
+            masterChatroom.delete();
             return _error_response(request, "User trying to leave does not exist in chatroom.")
 
     else:
+
+        text = "A fucking user has left the room."  
+        current_time = timezone.now()
+        msg = Message(user=userToRemove, chatroom=masterChatroom, timestamp=current_time, text=text, type='l')
+        msg.save()
+        UserToRemove.delete();
+
         return _success_response(request)
 
 
