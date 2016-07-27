@@ -129,7 +129,7 @@
 
     /* Hide both buttons if mouse click else where */
     $("body").click(function(event) {
-			window.alert(event.target.id);
+
         /* Act on the event */
         if(event.target.nodeName != "P" && event.target.nodeName != "A" && event.target.nodeName != "DIV") {
             // Move the button out of the response div
