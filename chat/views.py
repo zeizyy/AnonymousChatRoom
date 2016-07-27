@@ -78,7 +78,6 @@ def post_message(request):
     return _success_response(request)
 
 def leave(request):
-
     if request.method != 'POST':
         return _error_response(request, "TypeError")
     userId = request.POST['uid']
@@ -92,11 +91,11 @@ def leave(request):
             return _error_response(request, "User trying to leave does not exist in chatroom.")
 
     else:
-        text = "A fucking user has left the room."  
+        text = "A user has left the room."
         current_time = timezone.now()
         msg = Message(user=userToRemove, chatroom=masterChatroom, timestamp=current_time, text=text, type='l')
         msg.save()
-        userToRemove.delete();
+        #userToRemove.delete();
 
         return _success_response(request)
 
