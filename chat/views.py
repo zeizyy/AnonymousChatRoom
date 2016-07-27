@@ -45,7 +45,13 @@ def _get_distance(x1, y1, chatroom):
     return math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2))
 
 def get_message(request):
-    return _success_response(request, [('This is an exmaple message', 'n'), ('Someone has left', 'l')])
+    if request.method != 'GET':
+        return _error_response(request, "TypeError")
+    cid = request.GET.get('cid', None)
+    chatroom = ChatRoom.objects.get(pk=cid)
+    msgs = Message.objects.filter(chatroom=chatroom)
+    msgs_dict = [(msg.text, msg.type) for msg in msgs][-5:]
+    return _success_response(request, msgs_dict)
 
 def post_message(request):
     if request.method != 'POST':
@@ -56,9 +62,9 @@ def post_message(request):
     chatroom = ChatRoom.objects.get(pk=cid)
     text = request.POST['text']
     current_time = timezone.now()
-    msg = Message(user=user, chatroom=chatroom, timestamp=current_time, text=msg, type='n')
+    msg = Message(user=user, chatroom=chatroom, timestamp=current_time, text=text, type='n')
     msg.save()
-    return _success_response()
+    return _success_response(request)
 
 def test(request):
     return render_to_response('test.html')
