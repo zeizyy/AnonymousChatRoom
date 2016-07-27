@@ -52,7 +52,10 @@
                                 var well_id = "m"+(index+1).toString();
                                 var text = msgs[index][0];
                                 var type = msgs[index][1];
+								var messageOuterDiv = document.createElement("div");
                                 var messageContentDiv = document.createElement("div");  // <div>
+								messageOuterDiv.appendChild(messageContentDiv);
+								messageOuterDiv.setAttribute("id", "frame" + (index+1).toString());
                                 var messageContentP = document.createElement("p");  // <p>
                                 messageContentDiv.appendChild(messageContentP);
 
@@ -74,7 +77,7 @@
                                 //} else {
                                 //    messageContentP.style.color = "green";
                                 //}
-                                messages.appendChild(messageContentDiv);
+                                messages.appendChild(messageOuterDiv);
 
                         });
 
@@ -82,21 +85,23 @@
                         if(buttonAttachedID != -1) {
                             likeButton.style.display = "inline";
                             reportButton.style.display = "inline";
-                            var attachedMessageDiv = document.getElementById("div" + buttonAttachedID.toString());
+                            var attachedMessageDiv = document.getElementById("frame" + buttonAttachedID.toString());
                             attachedMessageDiv.appendChild(likeButton);
                             attachedMessageDiv.appendChild(reportButton);
+							reportButton.style.right = "0px";
+							likeButton.style.right = "0px";
                         }
                     },
                     complete: function(){
                         setTimeout(function(){
                             get_messages(cid);
-                        }, 500);
+                        }, 20000);
                     },
                 });
             };
 
     function onMessageClicked(messageId) {
-        //window.alert(messageId.toString());
+        window.alert(messageId.toString());
         //document.getElementById("p" + messageId.toString()).style.color = "black";
         // Get both buttons
         var likeButton = document.getElementById('likeButton');
@@ -108,7 +113,7 @@
         likeButton.setAttribute("onclick", "messageLiked("+ messageId.toString()+")");
         reportButton.setAttribute("onclick", "messageReported("+ messageId.toString()+")");
         // Get the clicked message
-        var clickedDiv = document.getElementById('div' + messageId.toString());
+        var clickedDiv = document.getElementById('frame' + messageId.toString());
         // Move both botton into the div with the clicked message
         clickedDiv.appendChild(likeButton);
         clickedDiv.appendChild(reportButton);
@@ -118,12 +123,12 @@
 
     // Called when the "Like" button is clicked
     function messageLiked(messageId) {
-        var likedMessage = document.getElementById("p" + messageId.toString());
+        var likedMessage = document.getElementById("m" + messageId.toString());
         likedMessage.style.textDecoration = "underline";
     }
 
     function messageReported(messageId) {
-        var reportMessage = document.getElementById("p" + messageId.toString());
+        var reportMessage = document.getElementById("m" + messageId.toString());
         reportMessage.style.color = "black";
     }
 
@@ -131,7 +136,7 @@
     $("body").click(function(event) {
         /* Act on the event */
         //window.alert(event.target.nodeName);
-        if(/*buttonsShown && */event.target.nodeName != "P" && event.target.nodeName != "BUTTON") {
+        if(/*buttonsShown && */event.target.nodeName != "P" && event.target.nodeName != "BUTTON" && event.target.nodeName != "DIV") {
             // Move the button out of the response div
             var getMessagesDiv = document.getElementById("getMessages");
             var likeButton = document.getElementById("likeButton");
