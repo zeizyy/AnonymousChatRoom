@@ -31,6 +31,18 @@
                 <button id="reportButton">Report</button>
             </div>
         </div>
+<!-- Font option list -->
+        <div class="col-md-3 col-md-offset-4" id="font-list" >
+            <ul style="list-style-type: none;">
+                <li class="font-option" style="font-family: Arial"></li>
+                <li class="font-option" style="font-family: Lucida Sans Unicode"></li>
+                <li class="font-option" style="font-family: Lucida Console"></li>
+                <li class="font-option" style="font-family: Impact"></li>
+                <li class="font-option" style="font-family: Times New Roman"></li>
+            </ul>
+            
+        </div>
+
  	</body>
 
     <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
@@ -62,3 +74,67 @@
 
         }
 </script>
+
+<script>
+  $( function() {
+    $( "#font-list" ).hide();
+    // run the currently selected effect
+    function runEffect() {
+      // get effect type from
+      var selectedEffect = "blind";
+ 
+      // Most effect types need no options passed by default
+      var options = {};
+ 
+      // Run the effect
+      $( "#font-list" ).toggle( selectedEffect, options, 500, callback );
+    };
+ 
+    //callback function to bring a hidden box back
+    function callback() {
+      setTimeout(function() {
+        $( "#font-list:visible" ).removeAttr( "style" ).fadeOut();
+      }, 1000 );
+    };
+ 
+    // Set effect from select menu value
+    $( "#fontChanger" ).click( function() {
+        $.each($(".font-option"), function(i){
+            if ($("#inputBox").val() == ''){
+                $(this).text("BBMan");
+            }
+            else{
+                $(this).text($("#inputBox").val());
+            }
+        });
+        $("#font-list").toggle();        
+      runEffect();
+    });
+
+    $("#inputBox").keyup(function(event) {
+        $.each($(".font-option"), function(i){
+            if ($("#inputBox").val() == ''){
+                $(this).text("BBMan");
+            }
+            else{
+                $(this).text($("#inputBox").val());
+            }
+        });
+    });
+
+        $(".font-option").mouseover(function() {
+            $(this).addClass('bg-warning');
+            var font = $(this).css("font-family");
+            $("#inputBox").css("font-family", font)
+        }).mouseout(function() {
+            $(this).removeClass('bg-warning');
+        }).click(function(){
+            $("#font-list").toggle();
+            var font = $(this).css("font-family");
+            $("#response").css("font-family", font);
+        });
+    // });
+    $("#font-list").hide();
+ 
+  } );
+  </script>
