@@ -95,7 +95,7 @@ def leave(request):
         current_time = timezone.now()
         msg = Message(user=userToRemove, chatroom=masterChatroom, timestamp=current_time, text=text, type='l')
         msg.save()
-        #userToRemove.delete();
+        userToRemove.delete()
 
         return _success_response(request)
 

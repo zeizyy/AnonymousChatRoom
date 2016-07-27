@@ -25,7 +25,7 @@ class ChatRoom(models.Model):
         return "ChatRoom(" + str(self.x_cord) + ", " + str(self.y_cord) + ")"
 
 class Message(models.Model):
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     chatroom = models.ForeignKey(ChatRoom)
     timestamp = models.DateTimeField(default=timezone.now)
     text = models.CharField(max_length=200)
