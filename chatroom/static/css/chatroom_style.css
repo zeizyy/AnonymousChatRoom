@@ -2,7 +2,53 @@ p.messageBox {
 	/*height: 42px;
 	width: 403px;*/
 	height: 42px;
-	border: 1.5pt solid;
+/*	border: 1.5pt solid;
+    border-color: #ffce00;
+*/    border-radius: 5.578px;
+    background-color: #fff922;
+    color: #333333;
+}
+
+#m1 {
+	background-color: #fff922;
+	opacity: 0.2;
+	margin-bottom: 8px;
+}
+
+#m2 {
+	background-color: #fff922;
+	opacity: 0.4;
+	margin-bottom: 8px;
+}
+
+#m3 {
+	background-color: #fff922;
+	opacity: 0.6;
+	margin-bottom: 8px;
+}
+
+#m4 {
+	background-color: #fff922;
+	opacity: 0.8;
+	margin-bottom: 8px;
+}
+
+#m5 {
+	background-color: #fff922;
+	margin-bottom: 8px;
+}
+
+#inputBox, button.btn {
+	margin-top: 82px;
+}
+
+#fontChanger, #sendButton, #inputBox {
+    /*height: 42px;
+    width: 295px;
+    margin-left: 9px;*/
+    border: 1.5pt solid;
+    border-color: #ffce00;
+    border-radius: 5.578px;
 }
 
 /*#m1 {
