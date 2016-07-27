@@ -29,7 +29,6 @@
                         // Fake message ID
                         //var messageId = 0;
                         // Log responseObject
-                        console.log(responseObject);
                         // Display the JSON query status
                         // Move the button out of the response div
                         //var getMessagesDiv = document.getElementById("messages");
@@ -88,7 +87,7 @@
                     complete: function(){
                         setTimeout(function(){
                             get_messages(cid);
-                        }, 5000);
+                        }, 1000);
                     },
                 });
             };
