@@ -81,12 +81,9 @@ def leave(request):
 
     if request.method != 'POST':
         return _error_response(request, "TypeError")
-    print "coanima"
     userId = request.POST['uid']
-    print userId
     userToRemove = User.objects.get(pk=userId)
     chatroomId = request.POST['cid']
-    print chatroomId
     masterChatroom = ChatRoom.objects.get(pk=chatroomId)
 
     if masterChatroom.users.count() == 1:
@@ -95,12 +92,11 @@ def leave(request):
             return _error_response(request, "User trying to leave does not exist in chatroom.")
 
     else:
-
         text = "A fucking user has left the room."  
         current_time = timezone.now()
         msg = Message(user=userToRemove, chatroom=masterChatroom, timestamp=current_time, text=text, type='l')
         msg.save()
-        UserToRemove.delete();
+        userToRemove.delete();
 
         return _success_response(request)
 
