@@ -8,22 +8,48 @@
 	</head>
 	<body style="margin-top:150px;">
         <div class="row" id="messages">
-            <div class="col-md-4 col-md-offset-4">
+            <div class="col-md-6 col-md-offset-4">
                 <div id="response">
-                    <div id="frame1"><div id="m1" class="well-sm">This</div></div>
-                    <div id="frame2"><div id="m2" class="well-sm">This</div></div>
-                    <div id="frame3"><div id="m3" class="well-sm">This</div></div>
-                    <div id="frame4"><div id="m4" class="well-sm">This</div></div>
-                    <div id="frame5"><div id="m5" class="well-sm">This</div></div>
+                    <div class="row" id="frame1">
+                        <div class="col-md-10"><div id="m1" class="well-sm">This</div></div>
+                        <div class="col-md-2"><a href="#" class="btn btn-default">Like</a></div>
+                    </div>
+                    <div class="row" id="frame1">
+                        <div class="col-md-10"><div id="m1" class="well-sm">This</div></div>
+                        <div class="col-md-2"><a href="#" class="btn btn-default">Like</a></div>
+                    </div>
+                    <div class="row" id="frame1">
+                        <div class="col-md-10"><div id="m1" class="well-sm">This</div></div>
+                        <div class="col-md-2"><a href="#" class="btn btn-default">Like</a></div>
+                    </div>
+                    <div class="row" id="frame1">
+                        <div class="col-md-10"><div id="m1" class="well-sm">This</div></div>
+                        <div class="col-md-2"><a href="#" class="btn btn-default">Like</a></div>
+                    </div>
+                    <div class="row" id="frame1">
+                        <div class="col-md-10"><div id="m1" class="well-sm">This</div></div>
+                        <div class="col-md-2"><a href="#" class="btn btn-default">Like</a></div>
+                    </div>
+{#                    <div id="frame2"><div id="m2" class="well-sm">This</div></div>#}
+{#                    <div id="frame3"><div id="m3" class="well-sm">This</div></div>#}
+{#                    <div id="frame4"><div id="m4" class="well-sm">This</div></div>#}
+{#                    <div id="frame5"><div id="m5" class="well-sm">This</div></div>#}
                 </div>
+                <div class="row">
+                    <div class="col-md-10">
                 <div class="input-group">
-                    <span class="input-group-btn">
-                        <button style="height: 45px;" id="fontChanger" class="btn btn-default" type="button">T</button>
-                    </span>
-                    <input style="height: 45px;" class="form-control" id="inputBox" type="text" placeholder="Please enter your message.">
-                    <span class="input-group-btn">
-                        <button id="sendButton" class="btn btn-default" type="button"><img style="height: 30px; width:30px" src="{% static 'img/send.png' %}"></button>
-                    </span>
+
+
+                            <span class="input-group-btn">
+                            <button style="height: 45px;" id="fontChanger" class="btn btn-default" type="button">T</button>
+                            </span>
+                            <input style="height: 45px;" class="form-control" id="inputBox" type="text" placeholder="Please enter your message.">
+                            <span class="input-group-btn">
+                                <button id="sendButton" class="btn btn-default" type="button"><img style="height: 30px; width:30px" src="{% static 'img/send.png' %}"></button>
+                            </span>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 			<div id="getMessages">
@@ -46,7 +72,7 @@
  	</body>
 
     <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
-    <script src="{% static 'scripts/main.js' %}"></script>
+{#    <script src="{% static 'scripts/main.js' %}"></script>#}
     <script>
         $(function(){
             get_messages("{{ chatroom.id }}");
