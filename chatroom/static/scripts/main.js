@@ -4,7 +4,7 @@
         console.log("send message is working!") // sanity check
         $.ajax({
             url : '/chatroom/post/',
-            type : "POST", // http method
+            type : 'POST', // http method
             data: {uid: uid, cid: cid, text: text},
             // handle a non-successful response
             error : function(xhr,errmsg,err) {
