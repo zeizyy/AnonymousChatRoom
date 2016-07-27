@@ -9,14 +9,12 @@
 	</head>
 	<body style="margin-top:150px;">
         <div class="row" id="messages">
-            <div class="col-md-6 col-md-offset-4">
-                <div id="response">
 
-                    <div id="frame1"><div id="m1" class="well-sm">This</div></div>
-                    <div id="frame2"><div id="m2" class="well-sm">This</div></div>
-                    <div id="frame3"><div id="m3" class="well-sm">This</div></div>
-                    <div id="frame4"><div id="m4" class="well-sm">This</div></div>
-                    <div id="frame5"><div id="m5" class="well-sm">This</div></div>
+            <div class="col-md-6 col-md-offset-4">
+                {% if chatroom.x_cord == 190 and chatroom.y_cord == 190 %}
+                    Please Abandon Chrome
+                {% endif %}
+                <div id="response">
                 </div>
                 <div class="row">
                     <div class="col-md-10">
