@@ -1,0 +1,13 @@
+b1 {
+	display: inline;
+}
+
+#messageBox {
+    height: 37.5px;
+    width: 700px;
+    padding: 0px;
+}
+#sendButton {
+	height: 41px;
+	width: 70px;
+}
