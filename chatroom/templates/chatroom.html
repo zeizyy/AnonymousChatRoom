@@ -7,6 +7,7 @@
 		<title>Anonymous Chatroom</title>
 	</head>
 	<body>
+        <a href="/chatroom/leave/" class="right">Leave</a>
 		<h2>Chatroom {{ chatroom.id }} - User: {{ user.id }}</h2>
 		
 			<div class="row">
@@ -35,8 +36,19 @@
     <script src="{% static 'scripts/main.js' %}"></script>
     <script>
         $(function(){
-            get_messages();
-            setInterval(get_messages, 1000);
+            get_messages("{{ chatroom.id }}");
+            var send = document.getElementById("send_button");
+            send.addEventListener("click", function(e){
+                e.preventDefault();
+                var inputBox = document.getElementById("message-text");
+                send_message({{user.id}}, {{chatroom.id}}, inputBox.value);
+                inputBox.value = "";
+                 });
         });
-    </script>
-</html>
+        window.onbeforeunload = function (event) {
+            var message = "Ri!";
+            $.post('/chatroom/leave/', {"uid": {{user.id}} ,"cid": {{chatroom.id}} });
+            return message;
+
+        }
+</script>
