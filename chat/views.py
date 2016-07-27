@@ -79,6 +79,8 @@ def post_message(request):
     cid = request.POST['cid']
     chatroom = ChatRoom.objects.get(pk=cid)
     text = request.POST['text']
+    if not text:
+        return _success_response(request)
     current_time = timezone.now()
     msg = Message(user=user, chatroom=chatroom, timestamp=current_time, text=text, type='n')
     msg.save()

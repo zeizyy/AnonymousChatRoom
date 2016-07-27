@@ -1,26 +1,30 @@
 {% load staticfiles %}
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
-    <title>bbman</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <title>BBMAN</title>
+
+
     <script>
         var startPos;
         var geoSuccess = function(position) {
             startPos = position;
             window.location.href = '/chatroom/create?x=' + startPos.coords.latitude + '&y=' + startPos.coords.longitude;
-{#            document.getElementById('startLat').innerHTML = startPos.coords.latitude;#}
-{#            document.getElementById('startLon').innerHTML = startPos.coords.longitude;#}
+            document.getElementById('startLat').innerHTML = startPos.coords.latitude;
+            document.getElementById('startLon').innerHTML = startPos.coords.longitude;
           };
         navigator.geolocation.getCurrentPosition(geoSuccess);
-{#        if (navigator.geolocation){#}
-{#            navigator.geolocation.getCurrentPosition(showPosition);#}
-{#        }#}
-{#        else{#}
-{#            window.location.href = '/chatroom/create?x=-1&y=-1';#}
-{#        }#}
-{#        function showPosition(position) {#}
-{#            window.location.href = '/chatroom/create?x=' + position.coords.latitude + '&y=' + position.coords.longitude;#}
-{#        }#}
+        if (navigator.geolocation){
+            navigator.geolocation.getCurrentPosition(showPosition);
+        }
+        else{
+            window.location.href = '/chatroom/create?x=-1&y=-1';
+        }
+        function showPosition(position) {
+            window.location.href = '/chatroom/create?x=' + position.coords.latitude + '&y=' + position.coords.longitude;
+        }
     </script>
 </head>
+<center><img align="middle" src="{% static 'img/anim.gif' %}"></center>
 </html>
