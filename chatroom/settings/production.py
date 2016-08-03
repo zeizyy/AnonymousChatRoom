@@ -79,8 +79,8 @@ WSGI_APPLICATION = 'chatroom.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'mysql.connector.django',
-        'NAME': 'chat',
-        'USER': 'chatadmin',
+        'NAME': 'chatroom',
+        'USER': 'bbman',
         'PASSWORD': 'microsoft',
         'HOST': 'db',
     }
@@ -109,5 +109,3 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
-
-DOMAIN_ROOT = "http://162.243.130.44"
